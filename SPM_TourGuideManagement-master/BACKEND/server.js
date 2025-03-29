@@ -123,19 +123,53 @@ function setupRoutes(useRealDb) {
   }
 }
 
+// After MongoDB connection is successful
+async function createDefaultAdminIfNeeded() {
+  try {
+    const User = require('./models/User'); // Add this line to import User model
+    
+    const adminCredentials = {
+      user_name: 'admin',
+      full_name: 'System Administrator',
+      email: 'admin@system.com',
+      password: 'admin',
+      role: 'admin'
+    };
+
+    const adminExists = await User.findOne({ user_name: 'admin' });
+    
+    if (!adminExists) {
+      const admin = new User(adminCredentials);
+      await admin.save();
+      console.log('Default admin account created with username: admin, password: admin');
+    } else {
+      // Ensure admin has correct role and password
+      if (adminExists.role !== 'admin' || adminExists.password !== 'admin') {
+        await User.findByIdAndUpdate(adminExists._id, adminCredentials);
+        console.log('Admin account credentials reset to defaults');
+      }
+    }
+  } catch (error) {
+    console.error('Error managing admin account:', error);
+  }
+}
+
 // Start the server
 async function startServer() {
   const isConnected = await connectToDatabase();
   
-  // Set up routes based on database connection status
+  if (isConnected) {
+    await createDefaultAdminIfNeeded();
+  }
+  
   setupRoutes(isConnected);
   
-  // Start the Express server
   app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
-    console.log(`API available at: http://localhost:${PORT}`);
-    if (!isConnected) {
-      console.log('NOTE: Running with in-memory database. All data will be lost when server restarts.');
+    if (isConnected) {
+      console.log('Default admin credentials:');
+      console.log('Username: admin');
+      console.log('Password: admin');
     }
   });
 }

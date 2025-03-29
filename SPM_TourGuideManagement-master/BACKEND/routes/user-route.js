@@ -92,7 +92,14 @@ router.post("/login", async (req, res) => {
       return res.json({ success: false, message: "Invalid password" });
     }
     
-    res.json({ success: true, user });
+    // Include role in response
+    res.json({ 
+      success: true, 
+      user: {
+        ...user._doc,
+        role: user.role || 'user' // Default to 'user' if role not set
+      }
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -101,9 +108,9 @@ router.post("/login", async (req, res) => {
 // Signup route (update the existing one)
 router.post("/signup", async (req, res) => {
   try {
-    const { user_name, full_name, email, password } = req.body;
+    const { user_name, full_name, email, password, role = 'user' } = req.body;
 
-    // Check if username already exists
+    // Check if username or email already exists
     const existingUser = await User.findOne({ 
       $or: [
         { user_name },
@@ -120,26 +127,28 @@ router.post("/signup", async (req, res) => {
       });
     }
 
+    // Create new user
     const newUser = new User({
       user_name,
       full_name, 
       email,
       password,
-      role: 'user'
+      role
     });
 
     await newUser.save();
     
-    res.status(201).json({
+    res.json({
       success: true,
-      message: 'Registration successful!'
+      message: 'Registration successful!',
+      user: newUser
     });
 
   } catch (err) {
     console.error("Signup error:", err);
     res.status(500).json({
       success: false, 
-      message: err.message
+      message: "Registration failed. Please try again."
     });
   }
 });

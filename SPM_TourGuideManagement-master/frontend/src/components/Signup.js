@@ -10,6 +10,7 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [reEnteredpassword, setReEnteredPassword] = useState("");
     const [agreedToTerms, setAgreedToTerms] = useState(false);
+    const [role, setRole] = useState("user");
     const [error, setError] = useState("");
 
     const history = useHistory();
@@ -51,10 +52,9 @@ const Signup = () => {
             full_name,
             email,
             password,
-            role: 'user'
+            role
         }
 
-        // Update API endpoint to match backend route
         axios.post("http://localhost:8070/user/signup", newUser)
             .then((res) => {
                 if (res.data.success) {
@@ -66,10 +66,7 @@ const Signup = () => {
             })
             .catch((err) => {
                 console.error("Registration error:", err);
-                setError(
-                    err.response?.data?.message || 
-                    "Registration failed. Please try again."
-                );
+                setError(err.response?.data?.message || "Registration failed. Please try again.");
             });
     }
 
@@ -88,95 +85,111 @@ const Signup = () => {
                                     </div>
                                 )}
 
-                                <div className="form-outline mb-4">
-                                    <input 
-                                        type="text" 
-                                        id="username" 
-                                        className="form-control" 
-                                        placeholder="Username" 
-                                        name="username"
-                                        maxLength="10"
-                                        onChange={(e) => setUserName(e.target.value)}
-                                        required 
-                                    />
-                                </div>
+                                <form onSubmit={addUser}>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="text" 
+                                            id="username" 
+                                            className="form-control" 
+                                            placeholder="Username" 
+                                            name="username"
+                                            maxLength="10"
+                                            onChange={(e) => setUserName(e.target.value)}
+                                            required 
+                                        />
+                                    </div>
 
-                                <div className="form-outline mb-4">
-                                    <input 
-                                        type="text" 
-                                        id="fullname" 
-                                        className="form-control" 
-                                        placeholder="Full Name" 
-                                        name="fullname"
-                                        onChange={(e) => setFullName(e.target.value)}
-                                        required 
-                                    />
-                                </div>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="text" 
+                                            id="fullname" 
+                                            className="form-control" 
+                                            placeholder="Full Name" 
+                                            name="fullname"
+                                            onChange={(e) => setFullName(e.target.value)}
+                                            required 
+                                        />
+                                    </div>
 
-                                <div className="form-outline mb-4">
-                                    <input 
-                                        type="email" 
-                                        id="email" 
-                                        className="form-control" 
-                                        placeholder="Email" 
-                                        name="email"
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required 
-                                    />
-                                </div>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            className="form-control" 
+                                            placeholder="Email" 
+                                            name="email"
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required 
+                                        />
+                                    </div>
 
-                                <div className="form-outline mb-4">
-                                    <input 
-                                        type="password" 
-                                        id="password" 
-                                        className="form-control" 
-                                        placeholder="Password" 
-                                        name="password"
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required 
-                                    />
-                                </div>
+                                    <div className="form-outline mb-4">
+                                        <select 
+                                            className="form-control" 
+                                            value={role}
+                                            onChange={(e) => setRole(e.target.value)}
+                                            required
+                                        >
+                                            <option value="user">Normal User</option>
+                                            <option value="tourguide">Tour Guide</option>
+                                        </select>
+                                        <label className="form-label" style={{marginTop: '5px', color: "#585555"}}>
+                                            Register as
+                                        </label>
+                                    </div>
 
-                                <div className="form-outline mb-4">
-                                    <input 
-                                        type="password" 
-                                        id="repassword" 
-                                        className="form-control" 
-                                        placeholder="Re-enter Password" 
-                                        name="repassword"
-                                        onChange={(e) => setReEnteredPassword(e.target.value)}
-                                        required 
-                                    />
-                                </div>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="password" 
+                                            id="password" 
+                                            className="form-control" 
+                                            placeholder="Password" 
+                                            name="password"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required 
+                                        />
+                                    </div>
 
-                                <div className="form-check d-flex justify-content-start mb-4" style={{marginTop: "25px"}}>
-                                    <input 
-                                        className="form-check-input" 
-                                        type="checkbox" 
-                                        id="form1Example3"
-                                        checked={agreedToTerms}
-                                        onChange={(e) => setAgreedToTerms(e.target.checked)}
-                                    />
-                                    <label className="form-check-label" htmlFor="form1Example3" style={{marginLeft: "10px", color: "#585555"}}>
-                                        Agree to terms & conditions
-                                    </label>
-                                </div>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="password" 
+                                            id="repassword" 
+                                            className="form-control" 
+                                            placeholder="Re-enter Password" 
+                                            name="repassword"
+                                            onChange={(e) => setReEnteredPassword(e.target.value)}
+                                            required 
+                                        />
+                                    </div>
 
-                                <button 
-                                    className={styles.btn_login} 
-                                    style={{marginTop: "15px", width: "fit-content"}} 
-                                    onClick={addUser}
-                                >
-                                    Sign up
-                                </button>
+                                    <div className="form-check d-flex justify-content-start mb-4" style={{marginTop: "25px"}}>
+                                        <input 
+                                            className="form-check-input" 
+                                            type="checkbox" 
+                                            id="form1Example3"
+                                            checked={agreedToTerms}
+                                            onChange={(e) => setAgreedToTerms(e.target.checked)}
+                                        />
+                                        <label className="form-check-label" htmlFor="form1Example3" style={{marginLeft: "10px", color: "#585555"}}>
+                                            Agree to terms & conditions
+                                        </label>
+                                    </div>
+
+                                    <button 
+                                        type="submit"
+                                        className={styles.btn_login} 
+                                        style={{marginTop: "15px", width: "fit-content"}} 
+                                    >
+                                        Sign up
+                                    </button>
+                                </form>
 
                                 <hr className="my-4" style={{opacity: "0.15"}}/>
 
-                                <div class="d-flex align-items-center justify-content-center pb-4">
-                                    <p class="mb-0 me-2">Already have an account?</p>
+                                <div className="d-flex align-items-center justify-content-center pb-4">
+                                    <p className="mb-0 me-2">Already have an account?</p>
                                     <Link to={"/user/login"}>Sign in</Link>
                                 </div>
-
                             </div>
                         </div>
                     </div>
