@@ -9,18 +9,43 @@ const TourUpdates = () => {
   const faqData = [
     {
       id: 1,
-      question: "What documents do I need for the tour?",
-      answer: "You'll need a valid ID, booking confirmation, and any required travel documents or visas."
+      question: "What if I take permits before April 1st, 2023?",
+      answer: "The new rule came into effect from April 1st, 2023. Trekkers who got permits and started their trek before April 1st do not require a guide, but they must have entered the trekking area before April 1st."
     },
     {
       id: 2,
-      question: "What's included in the tour package?",
-      answer: "Our packages typically include guided tours, accommodation, transportation, and selected meals."
+      question: "What if I want to do ACT or similar treks in mountain bikes?",
+      answer: "All treks need to comply with the new rule. You can contact a trekking agency in Nepal for a guide to accompany you on mountain bikes."
     },
     {
       id: 3,
-      question: "Can I customize my tour package?",
-      answer: "Yes, we offer customization options. Please contact our tour guides for personalized arrangements."
+      question: "What if I'm an experienced trekker with mountaineering association membership?",
+      answer: "The rule is applicable for all foreign national trekkers, regardless of experience or association membership."
+    },
+    {
+      id: 4,
+      question: "Where are guides mandatory?",
+      answer: "Guides are mandatory in all areas where TIMS is applicable and in national park areas in the mountains. This includes places like Chame and Muktinath. The rule is not applicable in Kathmandu Valley outskirts, Pokhara outskirts, and hiking areas around major cities."
+    },
+    {
+      id: 5,
+      question: "Do I have to go through a trekking agency?",
+      answer: "Yes, it is mandatory to hire a licensed trekking guide through a government-registered trekking agency."
+    },
+    {
+      id: 6,
+      question: "How can I verify if a trekking agency is legitimate?",
+      answer: "You can verify agency information through the Department of Tourism and Trekking Agencies Association of Nepal."
+    },
+    {
+      id: 7,
+      question: "Does this rule apply to expats and diplomats?",
+      answer: "Yes, the rule applies to all foreign nationals, including diplomats and expats. Only Nepali citizens are exempt."
+    },
+    {
+      id: 8,
+      question: "What about motorcycle or bus rides to trekking areas?",
+      answer: "The guide requirement does not apply to motorcycle or bus rides to places like Muktinath. However, TIMS and relevant area permits are still required."
     }
   ];
 

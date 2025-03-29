@@ -101,7 +101,7 @@ const ChatBot = () => {
       {isOpen && (
         <div className={styles.chatWindow}>
           <div className={styles.chatHeader}>
-            <h3>Travelo Assistant</h3>
+            <h3>Yatra Path Assistant</h3>
             <button onClick={() => setIsOpen(false)}>&times;</button>
           </div>
           <div className={styles.messagesList}>

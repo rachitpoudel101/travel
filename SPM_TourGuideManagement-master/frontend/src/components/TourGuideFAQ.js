@@ -23,6 +23,38 @@ const TourGuideFAQ = () => {
     {
       question: "What qualifications do your tour guides have?",
       answer: "All our tour guides are licensed professionals with extensive knowledge of local history, culture, and attractions. Many have years of experience and speak multiple languages."
+    },
+    {
+      question: "What about permits taken before April 1st, 2023?",
+      answer: "Trekkers who obtained permits and started their trek before April 1st, 2023 are not required to have a guide. However, they must have entered the trekking area before April 1st."
+    },
+    {
+      question: "Do I need a guide for mountain bike treks?",
+      answer: "Yes, all treks including mountain bike treks need to comply with the guide requirement. You can contact a trekking agency in Nepal for a guide who can accompany you on mountain bikes."
+    },
+    {
+      question: "Are experienced trekkers or mountaineering association members exempt?",
+      answer: "No, the rule applies to all foreign national trekkers, regardless of experience level or association membership."
+    },
+    {
+      question: "Where exactly are guides mandatory?",
+      answer: "Guides are mandatory in all areas where TIMS is applicable and in all national park areas in the mountains. The rule does not apply to Kathmandu Valley outskirts, Pokhara outskirts, or hiking areas around major cities."
+    },
+    {
+      question: "Can I hire a guide directly or must I go through an agency?",
+      answer: "It is mandatory to hire a licensed trekking guide through a government-registered trekking agency."
+    },
+    {
+      question: "How can I verify if a trekking agency is legitimate?",
+      answer: "You can verify agency information through the Department of Tourism and Trekking Agencies Association of Nepal."
+    },
+    {
+      question: "Does this rule apply to expats and diplomats in Nepal?",
+      answer: "Yes, the rule applies to all foreign nationals, including diplomats and expats. Only Nepali citizens are exempt from this requirement."
+    },
+    {
+      question: "What about motorcycle or bus rides to trekking areas?",
+      answer: "The guide requirement does not apply to motorcycle or bus rides. However, you still need TIMS and relevant area permits where applicable."
     }
   ];
 

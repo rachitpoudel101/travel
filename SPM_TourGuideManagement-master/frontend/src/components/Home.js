@@ -22,7 +22,7 @@ const Home = () => {
                 <div className={styleHome.centered}>
                     <div className={styleHome.headerTxt}>TRAVEL TO EXPLORE</div>
                     <div className={styleHome.sloganTxt}>Stop worrying about the potholes in the road and enjoy the journey <br/>~ Babs Hoffman ~</div>
-                    <button className={styleHome.exploreBtn}>Explore Now</button>
+                    {/* <button className={styleHome.exploreBtn}>Explore Now</button> */}
                 </div>
             </div>
         </div>

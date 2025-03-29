@@ -54,11 +54,6 @@ const Profile = (props) => {
                         </Link>
                     </div>
                     <div className="list-group list-group-flush mx-3 mt-4">
-                        <Link to="/print/payment+history" className={styles.sidelinks}>
-                            Monthly Report
-                        </Link>
-                    </div>
-                    <div className="list-group list-group-flush mx-3 mt-4">
                         <Link to={`/find/package/${props.userId}`} className={styles.sidelinks}>
                             My Tour Packages
                         </Link>
