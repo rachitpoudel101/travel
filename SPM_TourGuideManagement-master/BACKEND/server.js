@@ -86,7 +86,7 @@ function setupRoutes(useRealDb) {
     app.use("/payments/history", paymentHistoryRouter);
     app.use("/hotel", hotelRouter);
     app.use("/room", roomRouter);
-    app.use("/user", UserRouter);
+    app.use("/user", UserRouter);  // This line is important
     app.use("/tourguide", tourguideRouter);
   } else {
     // Use in-memory mock database routes

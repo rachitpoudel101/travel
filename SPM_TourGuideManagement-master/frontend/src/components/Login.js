@@ -24,25 +24,20 @@ export default function Login({ login }) {
   function loginUser(e) {
     e.preventDefault();
     
-    axios.post("http://localhost:8070/user/login", userEnteredInfo)
+    axios.post("http://localhost:8070/user/login", userEnteredInfo)  // Changed endpoint back to original
       .then((res) => {
         if (res.data.success) {
           const userRole = res.data.user.role;
           localStorage.setItem('userRole', userRole);
           login(res.data.user._id);
-          
-          // Redirect based on role
-          if (userRole === 'admin') {
-            window.location = '/admin/dashboard'; // Or your admin landing page
-          } else {
-            window.location = '/home';
-          }
+          window.location = '/home';
         } else {
-          alert("Invalid credentials");
+          alert(res.data.message || "Invalid credentials");
         }
       })
       .catch((err) => {
-        alert(err);
+        console.error("Login error:", err.response?.data || err.message);
+        alert(err.response?.data?.message || "Login failed. Please check your credentials.");
       });
   }
 
